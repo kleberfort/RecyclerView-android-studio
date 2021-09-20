@@ -1,10 +1,12 @@
-package com.example.recyclerview;
+package com.example.recyclerview.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.recyclerview.R;
 
 public class MainActivity extends AppCompatActivity {
 
