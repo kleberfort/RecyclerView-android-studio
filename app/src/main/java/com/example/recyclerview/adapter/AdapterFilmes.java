@@ -1,5 +1,6 @@
 package com.example.recyclerview.adapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -7,22 +8,42 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recyclerview.R;
+import com.example.recyclerview.model.Filme;
+
+import java.util.List;
+
 public class AdapterFilmes extends RecyclerView.Adapter<AdapterFilmes.MyViewHolder> {
+    private List<Filme> listaFilmes;
+
+    public AdapterFilmes(List<Filme> lista) {
+        this.listaFilmes = lista;
+    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+
+        View itenLista = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.adapter_lista, parent, false);
+
+        return new MyViewHolder(itenLista);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterFilmes.MyViewHolder holder, int position) {
 
+        Filme filme = listaFilmes.get(position);
+
+        holder.titulo.setText(filme.getTituloFilme());
+        holder.genero.setText(filme.getGenero());
+        holder.ano.setText(filme.getAno());
+
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public int getItemCount()  {
+        return listaFilmes.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -33,6 +54,10 @@ public class AdapterFilmes extends RecyclerView.Adapter<AdapterFilmes.MyViewHold
 
         public MyViewHolder(@NonNull  View itemView) {
             super(itemView);
+
+            titulo = itemView.findViewById(R.id.textTitulo);
+            ano = itemView.findViewById(R.id.textAno);
+            genero = itemView.findViewById(R.id.textGenero);
         }
     }
 }
